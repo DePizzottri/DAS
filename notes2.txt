@@ -1,0 +1,10 @@
+actor1:
+    msg1 => {
+        
+    }
+    msg2 => {
+    
+    }
+    msg3(data1, data2) => {
+        actor2 ! msg4(data3)
+    }

@@ -1,0 +1,12 @@
+Акторы (формализм акторов)
+
+1973 (Хюитт)
+
+Erlang (Erriccson)
+Akka (Scala/JVM) Coursera 
+(IFPIS) 
+(Introduction to Reactive Programming)
+
+Не более одной доставки
+Не менее одной доставки
+Ровно одна доставка

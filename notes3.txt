@@ -1,0 +1,70 @@
+bfs() {
+    queue = [0]
+    used = [0]
+    while(!queue.empty()) {
+        v = queue.pop()
+        friends = graph.getFriends(v)
+        database.insert(v, friends)
+        newFirends = used.FAE(friends)
+        queue.push(newFriends)
+    }
+}
+
+queue(innerq):
+    IsEmpty => {
+        if(innerq.empty())
+            sender ! Empty
+        else 
+            sender ! NotEmpty
+    }
+    Pop => {
+        if(!innerq.empty())
+            sender ! Vertex(innerq.pop())
+        else sender ! Empty
+    }
+    Push(list) => {
+        innerq.push(list)
+    }
+    
+used(u):
+    MarkAndFilter(v) => {
+        sender ! Filtered (v, used.markAndfilter(list))
+    }
+    
+graph:
+    GetFriends(v) => {
+        sender ! Friends(v, ....(v))
+    }
+    
+database:
+    Insert(v, list) => {
+        ...
+    }
+    
+bfs:
+    Start => {
+        queue ! IsEmpty
+    }
+    
+    Empty => {
+        self ! Start
+    }
+    
+    NotEmpty => {
+        queue ! Pop
+    }
+    
+    Vertex(v) => {
+        graph ! GetFriends(v)
+    }
+    
+    Friends(v, list) => {
+        database ! Insert(v, list)
+        used ! Filter(v, list)
+    }
+    
+    Filtered(v, list) => {
+        queue.push(list)
+        self ! Start
+    }
+    
